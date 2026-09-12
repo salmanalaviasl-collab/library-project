@@ -1,6 +1,4 @@
-main.pyfrom 
-services.library_manager import LibraryManager
-
+ from services.library_manager import LibraryManager
 
 def show_menu():
     print("\n===== سیستم مدیریت کتابخانه =====")
