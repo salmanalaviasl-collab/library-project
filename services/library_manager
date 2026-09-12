@@ -1,0 +1,25 @@
+from models.book import Book
+from utils.file_handler import save_books,load_books
+class LibraryManager:
+    def __init__(self,filepath="library_project/data/books.json"):
+        self.filepath = filepath
+        self.books = []
+    def add_book(self, title, author, isbn): 
+        book= Book(title, author, isbn)
+        self.books.append(book)
+    def remove_book(self,isbn):
+        for book in self.books:
+            if book.isbn == isbn:
+                self.books.remove(book)
+                return True
+        raise ValueError("کتاب پیدا نشد ")
+    def find_by_title(self,title):
+        return [book for book in self.books if title.lower() in book.title.lower()]
+    def find_by_author(self,author):
+        return[book for book in self.books if author.lower() in book.author.lower()]
+    def save(self):
+        save_books(self.books , self.filepath)
+    def load(self):
+        self.books = load_books(self.filepath)
+        
+        
