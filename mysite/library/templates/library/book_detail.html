@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ book.title }}</title>
+</head>
+<body>
+    <h1>{{ book.title }}</h1>
+    <p>نویسنده: {{ book.author }}</p>
+    <p>وضعیت: {% if book.is_borrowed %}امانت رفته{% else %}موجود{% endif %}</p>
+</body>
+</html>
