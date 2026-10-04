@@ -13,5 +13,10 @@ def add_book(request):
     else:
         form = BookForm()
     return render(request, "library/add_book.html", {"form": form})
+def delete_book(request, book_id):
+    book = Book.objects.get(id=book_id)
+    book.delete()
+    return redirect("book_list")
+
         
 # Create your views here.
