@@ -17,6 +17,16 @@ def delete_book(request, book_id):
     book = Book.objects.get(id=book_id)
     book.delete()
     return redirect("book_list")
+def edit_book(request, book_id):
+    book = Book.objects.get(id=book_id)
+    if request.method == "POST":
+        form = BookForm(request.POST, instance=book)
+        if form.is_valid():
+            form.save()
+            return redirect("book_list")
+    else:
+        form = BookForm(instance=book)
+    return render(request, 'library/edit_book.html',{"form":form})
 
         
 # Create your views here.

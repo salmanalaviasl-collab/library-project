@@ -9,10 +9,11 @@
         {% for book in books %}
             <li>
                 {{ book.title }} - {{ book.author }}
-                <a href="{% url 'delete_book' book.id %}">حذف</a>
+                <a href="{% url 'delete_book' book.id %}">delete</a>
+                <a href="{% url 'edit_book' book.id %}">edit</a>
             </li>
-
         {% endfor %}
     </ul>
+    <a href="{% url 'add_book' %}">add new book </a>
 </body>
 </html>
