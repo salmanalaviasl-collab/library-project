@@ -7,5 +7,13 @@ class Book(models.Model):
 
     def __str__(self):
         return self.title
+class Member(models.Model):
+    name = models.CharField(max_length=100)
+class Loan(models.Model):
+    member = models.ForeignKey(Member, on_delete=models.CASCADE)
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    borrow_date = models.DateField()
+    def __str__(self):
+        return f"{self.member.name} - {self.book.title}"
 
 # Create your models here.
