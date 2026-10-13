@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Book
-from .forms import BookForm
+from .forms import BookForm, LoanForm
 def book_list(request):
     books = Book.objects.all()
     return render(request,"library/book_list.html",{"books": books})
@@ -27,6 +27,20 @@ def edit_book(request, book_id):
     else:
         form = BookForm(instance=book)
     return render(request, 'library/edit_book.html',{"form":form})
+def loan_book(request,book_id):
+    book = Book.objects.get(id=book_id)
+    if request.method == "POST":
+        form = LoanForm(request.POST)
+        if form.is_valid():
+            loan = form.save(commit=False)
+            loan.book = book 
+            loan.save()
+            return redirect('book_list')
+    else:
+        form = LoanForm()
+    return render(request, 'library/loan_book.html' , {'form':form})
+
+
 
         
 # Create your views here.
