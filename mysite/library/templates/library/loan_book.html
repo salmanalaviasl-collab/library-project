@@ -5,7 +5,15 @@
     <h1>loan: {{ book.title }}</h1>
     <form method="POST">
         {% csrf_token %}
-        {{ form.as_p }}
+        <p>
+            <label for="id_member">member</label>
+        {{ form.member }}
+        </p>
+        <p>
+            <label for="id_borrow_date">Date:</label>
+            <input type="date" name="borrow_date" required>
+        </p>
+
         <button type="submit">Save</button>
     </form>
 </body>

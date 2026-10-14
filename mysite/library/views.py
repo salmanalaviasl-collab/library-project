@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Book
+from .models import Book, Loan
 from .forms import BookForm, LoanForm
 def book_list(request):
     books = Book.objects.all()
@@ -39,6 +39,12 @@ def loan_book(request,book_id):
     else:
         form = LoanForm()
     return render(request, 'library/loan_book.html' , {'form':form})
+def book_detail(request,book_id):
+    book = Book.objects.get(id=book_id)
+    loans = Loan.objects.filter(book=book)
+    return render(request,'library/book_detail.html',{"book":book , "loans":loans })
+
+    
 
 
 
