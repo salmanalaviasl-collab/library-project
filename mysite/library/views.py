@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from .models import Book, Loan
-from .forms import BookForm, LoanForm
+from .models import Book, Loan, Member
+from .forms import BookForm, LoanForm, MemberForm
 def book_list(request):
     books = Book.objects.all()
     return render(request,"library/book_list.html",{"books": books})
@@ -43,6 +43,34 @@ def book_detail(request,book_id):
     book = Book.objects.get(id=book_id)
     loans = Loan.objects.filter(book=book)
     return render(request,'library/book_detail.html',{"book":book , "loans":loans })
+def add_member(request):
+    if request.method == 'POST':
+        form = MemberForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('member_list')
+    else:
+        form = MemberForm()
+    return render(request,'library/add_member.html',{'form':form})
+def member_list(request):
+    members = Member.objects.all()
+    return render(request,'library/member_list.html',{'members':members})
+def delete_member(request,member_id):
+    member = Member.objects.get(id=member_id)
+    member.delete()
+    return redirect('member_list')
+def edit_member(request,member_id):
+    member = Member.objects.get(id=member_id)
+    if request.method == 'POST':
+        form = MemberForm(request.POST,instance=member)
+        if form.is_valid():
+            form.save()
+            return redirect('member_list')
+    else:
+        form = MemberForm(instance=member)
+    return render(request,'library/edit_member.html',{'form':form})
+
+
 
     
 

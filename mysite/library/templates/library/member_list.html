@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head><title>Member List</title></head>
+<body>
+    <h1>List Of Members</h1>
+    <ul>
+        {% for member in members %}
+            <li>
+                {{ member.name }}
+               <br> <a href="{% url 'edit_member' member.id %}">Edit</a>
+               <a href ="{% url 'delete_member' member.id %}">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'add_member' %}">Add New Member</a>
+    <br><a href="{% url 'book_list' %}">Return Book_List</a>
+
+</body>
+</html>
