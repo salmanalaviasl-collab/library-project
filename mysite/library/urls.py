@@ -11,6 +11,8 @@ urlpatterns = [
     path("member/add/", views.add_member, name ='add_member'),
     path("member/<int:member_id>/edit/",views.edit_member, name='edit_member'),
     path("member/<int:member_id>/delete/",views.delete_member, name='delete_member'),
+    path("loan/<int:loan_id>/return/", views.return_book, name='return_book'),
+    path("member/<int:member_id>/detail/",views.member_detail,name='member_detail')
 
 
 ]

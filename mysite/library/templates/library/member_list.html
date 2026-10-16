@@ -9,6 +9,7 @@
                 {{ member.name }}
                <br> <a href="{% url 'edit_member' member.id %}">Edit</a>
                <a href ="{% url 'delete_member' member.id %}">Delete</a>
+               <a href="{% url 'member_detail' member.id %}">Detail</a>
             </li>
         {% endfor %}
     </ul>

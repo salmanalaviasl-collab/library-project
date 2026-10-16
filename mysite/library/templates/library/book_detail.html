@@ -8,7 +8,13 @@
     <h2>loans for this book</h2>
     <ul>
         {% for loan in loans %}
-        <li>{{ loan.member.name }} - {{ loan.borrow_date }}</li>
+        <li>{{ loan.member.name }} - {{ loan.borrow_date }}
+            {% if not loan.is_returned %}
+            <a href="{% url 'return_book' loan.id %}">Return Book</a>
+            {% else %}
+            (Returned)
+            {% endif %}
+        </li>
         {% endfor %}
     </ul>
 

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head><title>Member Detail</title></head>
+<body>
+    <h1>{{ member.name }}</h1>
+    <h2>Loans</h2>
+    <ul>
+        {% for loan in loans %}
+            <li>
+                {{loan.book.title }} - {{loan.borrow_date }}
+                {% if not loan.is_returned %}
+                    (not returned)
+                {% else %}
+                    (returned)
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
