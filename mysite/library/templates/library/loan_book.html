@@ -1,6 +1,10 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
-<head><title>Loan Book</title></head>
+<head>
+    <title>Loan Book</title>
+    <link rel="stylesheet" href="{% static 'library/style.css' %}">
+</head>
 <body>
     <h1>loan: {{ book.title }}</h1>
     <form method="POST">

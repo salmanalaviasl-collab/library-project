@@ -1,20 +1,25 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
-<head><title>Member List</title></head>
+<head>
+    <title>Member List</title>
+    <link rel="stylesheet" href="{% static 'library/style.css' %}">
+</head>
 <body>
     <h1>List Of Members</h1>
     <ul>
         {% for member in members %}
             <li>
                 {{ member.name }}
-               <br> <a href="{% url 'edit_member' member.id %}">Edit</a>
-               <a href ="{% url 'delete_member' member.id %}">Delete</a>
-               <a href="{% url 'member_detail' member.id %}">Detail</a>
+                <br>
+               <a href="{% url 'edit_member' member.id %}"class="btn btn-edit">Edit</a>
+               <a href ="{% url 'delete_member' member.id %}"class="btn btn-delete">Delete</a>
+               <a href="{% url 'member_detail' member.id %}"class="btn btn-detail">Detail</a>
             </li>
         {% endfor %}
     </ul>
-    <a href="{% url 'add_member' %}">Add New Member</a>
-    <br><a href="{% url 'book_list' %}">Return Book_List</a>
+    <a href="{% url 'add_member' %}" class="btn btn-nav">Add New Member</a>
+    <a href="{% url 'book_list' %}" class="btn btn-nav">Return Book_List</a>
 
 </body>
 </html>
