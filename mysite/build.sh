@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
-set -o errexit
+
+# 1. نصب پکیج‌ها
 pip install -r requirements.txt
+
+# 2. جمع‌آوری فایل‌های استاتیک (برای درست شدن CSSها)
 python manage.py collectstatic --no-input
+
+# 3. اجرای مهاجرت‌های دیتابیس
 python manage.py migrate
 
-# ساخت خودکار ادمین (اگر از قبل وجود نداشته باشد)
-python manage.py shell -c 
-"from django.contrib.auth 
-import get_user_model; User = get_user_model();
-User.objects.filter(username='salman').exists() or
-User.objects.create_superuser('salman',
-'salmanalaviasl@gmail.com', '666790Sn')"
+# 4. ساخت ادمین (با استفاده از متغیرهایی که تو رندر ساختی)
+python manage.py createsuperuser --no-input || true
